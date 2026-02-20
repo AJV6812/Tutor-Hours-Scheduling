@@ -22,7 +22,7 @@ Firstly, setting we'll set up the code base:
 2. Windows + Shift + P (or otherwise open the VS Code command palate), and select "Python: Create Environment"
 3. Select venv, pick a 3.12.3 python version (other versions will probably still work)
 4. Leave .venv as the name
-5. Select install project dependencies, and use requirements.txt as your depedencies.
+5. Select install project dependencies, and use requirements.txt as your depedencies. (If there are any problems with dependencies when executing later, restart VSCode).
 
 Basically all this has done is created a separate space in which Python runs in, and installed all the required modules into that space. At this point the python code itself is ready to run, but we need to set up the Google sheets file and Google Calendar first.
 
