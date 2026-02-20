@@ -1,17 +1,6 @@
-# iCal feeds. More than one feed can be specified.
-#
-# 'source': The iCal feed URL for the events that should be synced to the Google Calendar.
-# Note that the syncing is one-way only.
-#
-# 'destination': The ID of the calendar to use for iCal events, should be of the form
-# 'ID@group.calendar.google.com', check the calendar settings page to find it.
-# All calendars should be writable with the same google credenatials
-# (can also be 'primary' to use the default calendar)
-#
-# 'files': If it is True then 'source' is the path to a folder full of ics files.
-#
-#  Feeds can be of mixed types
-
+# Defines which iCal files are read into which spreadsheets.
+# Ensure each one has a source, destination and files field, the source should be ./icals/Tutor or ./icals/master (this is the folder in which the cal.ical is in).
+# Destination is the google calendar id, found under Integrate Calendar in settings, and files should be set to True.
 ICAL_FEEDS = [
     {
         "source": "./icals/master",
@@ -30,6 +19,32 @@ ICAL_FEEDS = [
     },
 ]
 
+SPREADSHEET_ID = "1mK9tzrYF8xmd1Ncdhn9qOw81cKFGS-qQVlkeK0hRkSo"
+
+WORKSHEET_NAMES = ["Alex", "Rhys"]
+
+# These are the table headers chosen for the spreadsheet. They must match exactly to what is in the spreadsheet.
+DATE_HEADER = "Date"
+START_TIME_HEADER = "Start Time"
+END_TIME_HEADER = "End Time"
+LOCATION_HEADER = "Location"
+TYPE_HEADER = "Type" # This refers to the type of tutoring event, for example Tutor Hours or Seminar
+NAME_HEADER = "Name" # This is for the names of seminars and other important events
+
+# Application name for the Google Calendar API
+APPLICATION_NAME = "tutor-hours-scheduling"
+
+# File to use for logging output
+LOGFILE = "tutor_calendar.log"
+
+############## SHOULD NOT HAVE TO TOUCH ANYTHING BELOW #################
+
+# API secret stored in this file
+CLIENT_SECRET_FILE = "account_info.json"
+
+# Location to store API credentials
+CREDENTIAL_PATH = "credentials.json"
+
 # Authentication information for the ical feeds.
 # The same credentials are used for all feeds where 'files' is False
 # If the feed does not require authentication or if FILES is true, it should be left to None
@@ -44,17 +59,6 @@ ICAL_FEED_VERIFY_SSL_CERT = True
 # Must use the OAuth scope that allows write access
 SCOPES = ["https://www.googleapis.com/auth/calendar", "https://www.googleapis.com/auth/spreadsheets"]
 
-# API secret stored in this file
-CLIENT_SECRET_FILE = "account_info.json"
-
-# Location to store API credentials
-CREDENTIAL_PATH = "credentials.json"
-
-# Application name for the Google Calendar API
-APPLICATION_NAME = "tutor-hours-scheduling"
-
-# File to use for logging output
-LOGFILE = "tutor_calendar.log"
 
 # Time to pause between successive API calls that may trigger rate-limiting protection
 API_SLEEP_TIME = 0.10
@@ -119,13 +123,3 @@ def EVENT_PREPROCESSOR(ev: icalparser.Event) -> bool:
 # NOTE: Characters allowed in the ID are those used in base32hex encoding, i.e. lowercase
 # letters a-v and digits 0-9, see section 3.1.2 in RFC2938
 EVENT_ID_PREFIX = ""
-
-
-SPREADSHEET_ID = "1mK9tzrYF8xmd1Ncdhn9qOw81cKFGS-qQVlkeK0hRkSo"
-WORKSHEET_NAMES = ["Alex", "Rhys"]
-DATE_HEADER = "Date"
-START_TIME_HEADER = "Start Time"
-END_TIME_HEADER = "End Time"
-LOCATION_HEADER = "Location"
-TYPE_HEADER = "Type"
-NAME_HEADER = "Name"
