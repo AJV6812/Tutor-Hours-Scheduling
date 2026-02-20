@@ -1,0 +1,7 @@
+.env
+.venv
+*.log
+credentials.json
+account_info.json
+icals
+__pycache__
