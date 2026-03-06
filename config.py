@@ -4,32 +4,37 @@
 ICAL_FEEDS = [
     {
         "source": "./icals/master",
-        "destination": "8a14f6e116f203318fcf5ff3e815c7743d8762fea64eaec0e6984e5d698949c0@group.calendar.google.com",
+        "destination": "4b0fd2b4c31673849c3f31ad583b35662b15feef9a2b0f69d32f772f22d4df70@group.calendar.google.com",
         "files": True,
     },
     {
         "source": "./icals/Rhys",
-        "destination": "c896e431389ce928f25525fff189d8e38fcb59a4bc14bd428fae7e59d8a42cd2@group.calendar.google.com",
+        "destination": "cdac1a4ccece48e107c4ed6ab7eff963d490ec26406ed61becbadd055e4d2aba@group.calendar.google.com",
         "files": True,
     },
     {
         "source": "./icals/Alex",
-        "destination": "2ac3e0721d41c319de8ffb3ccb575e5201e258ae5949e046f2a62db410ee4919@group.calendar.google.com",
+        "destination": "701f3d1113f6c41f48ecbce6e741a09cf9e7433c24eaabd824075f3638b519e1@group.calendar.google.com",
         "files": True,
     },
+    {
+        "source": "./icals/Lauren",
+        "destination": "3dd7e544289656acc0090b2f968644f12dca0caf1e1202bd8338ae6229e25cdf@group.calendar.google.com",
+        "files": True,
+    }
 ]
 
-SPREADSHEET_ID = "1mK9tzrYF8xmd1Ncdhn9qOw81cKFGS-qQVlkeK0hRkSo"
+SPREADSHEET_ID = "1CyLZRSk1SFdRVYnkbzy2fmLWEUF2P9S2utjD52YkW2Q"
 
-WORKSHEET_NAMES = ["Alex", "Rhys"]
+WORKSHEET_NAMES = ["Alex", "Rhys", "Lauren"]
 
 # These are the table headers chosen for the spreadsheet. They must match exactly to what is in the spreadsheet.
-DATE_HEADER = "Date"
+DATE_HEADER = "Date (Do Not Touch)"
 START_TIME_HEADER = "Start Time"
 END_TIME_HEADER = "End Time"
 LOCATION_HEADER = "Location"
 TYPE_HEADER = "Type" # This refers to the type of tutoring event, for example Tutor Hours or Seminar
-NAME_HEADER = "Name" # This is for the names of seminars and other important events
+NAME_HEADER = "Name (For Seminars)" # This is for the names of seminars and other important events
 
 # Application name for the Google Calendar API
 APPLICATION_NAME = "tutor-hours-scheduling"

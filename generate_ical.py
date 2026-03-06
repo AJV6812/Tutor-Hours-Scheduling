@@ -70,6 +70,9 @@ def main():
         for row in values[1:]:
             event: Event = Event()
 
+            while max([date_index, start_time_index, end_time_index, location_index, type_index, name_index]) >= len(row):
+                row.append("")
+
             name = f"{worksheet_name}'s {row[type_index]}" # For regular tutor hours
             if row[name_index] != "":
                 name = f"{row[name_index]} ({name})" # For seminar naming
@@ -83,10 +86,10 @@ def main():
             # Using dateutil.parser.parse to read in the time and date. If this does not work for a specific case, you can switch to a rigid parser, or set fuzzy to True.
             try:
                 start_dt = dateutil.parser.parse(
-                    f"{row[date_index]} {row[start_time_index]}"
+                    f"{row[date_index]} {row[start_time_index]}", dayfirst=True
                 )
                 end_dt = dateutil.parser.parse(
-                    f"{row[date_index]} {row[end_time_index]}"
+                    f"{row[date_index]} {row[end_time_index]}", dayfirst=True
                 )
             except dateutil.parser._parser.ParserError as e:
                 logger.error(f"> Could not process time in {name} ({e})")
@@ -116,7 +119,10 @@ def main():
             master_calendar.add_component(event)
 
     # Save each calendar in a separate folder (to make ical_to_gcal_sync work properly)
-    shutil.rmtree("./icals")
+    try:
+        shutil.rmtree("./icals")
+    except FileNotFoundError:
+        pass
     for name, calendar in individual_calendars.items():
         os.makedirs(f"./icals/{name}")
         with open(f"./icals/{name}/cal.ics", "wb") as f:
